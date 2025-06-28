@@ -55,8 +55,9 @@ const Symptom = mongoose.model('Symptom', symptomSchema);
 
 // Routes
 app.get('/', (req, res) => {
-	res.sendFile(path.join(__dirname, '../public', 'index.html'));
+	res.sendFile(path.join(__dirname, '../public', 'icon.html'));
 });
+
 
 app.get('/map', (req, res) => {
 	res.sendFile(path.join(__dirname, '../public', 'map.html'));
