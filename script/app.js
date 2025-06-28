@@ -22,10 +22,27 @@ if (!OPEN_CAGE_API_KEY || !MONGODB_URI) {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static files from ../public
+// Routes
+app.get('/', (req, res) => {
+	res.sendFile(path.join(__dirname, '../public', 'Icon.html'));
+});
+
+app.get('/home', (req, res) => {
+	res.sendFile(path.join(__dirname, '../public', 'home.html'));
+});
+
+app.get('/form', (req, res) => {
+	res.sendFile(path.join(__dirname, '../public', 'index.html'));
+});
+
+app.get('/map', (req, res) => {
+	res.sendFile(path.join(__dirname, '../public', 'map.html'));
+});
+
+// Serve static files (after custom routes)
 app.use(express.static(path.join(__dirname, '../public')));
 
-// Connect to MongoDB
+// MongoDB Connection
 mongoose
 	.connect(MONGODB_URI, {
 		useNewUrlParser: true,
@@ -52,19 +69,6 @@ const symptomSchema = new mongoose.Schema({
 });
 
 const Symptom = mongoose.model('Symptom', symptomSchema);
-
-// Routes
-app.get('/', (req, res) => {
-	res.sendFile(path.join(__dirname, '../public', 'Icon.html'));
-});
-
-app.get('/form', (req, res) => {
-	res.sendFile(path.join(__dirname, '../public', 'index.html'));
-});
-
-app.get('/map', (req, res) => {
-	res.sendFile(path.join(__dirname, '../public', 'map.html'));
-});
 
 // POST symptoms
 app.post('/api/symptoms', async (req, res) => {
