@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KEM</title>
+    <style>
+        /* Wrapper for the blurred background */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("kem.jpg");
+            background-size: cover;
+            background-position: center;
+            filter: blur(10px) grayscale(50%);
+            z-index: -1; /* Push background behind the content */
+        }
+
+        /* Content container */
+        .container {
+            position: relative;
+            width: 100%;
+            height: auto;
+            background-color: rgba(0, 0, 0, 0.5); /* Black overlay for better contrast */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            border-radius: 100px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            background: linear-gradient(to top, red, yellow);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .cont{
+            position: relative;
+            width: auto;
+            background-color: rgba(76, 71, 71, 0.5); /* Semi-transparent overlay */
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            color: white;
+            max-width: 800px;
+            text-align: justify;
+            
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        h2{
+            font-size: 20px;
+            color: darkblue;
+        }
+
+        p{
+            font-size: 18px;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Blurred background -->
+    <div class="background"></div>
+
+    <!-- Content container -->
+    <div class="container">
+        <h1>KING EDWARD MEMORIAL HOSPITAL</h1>
+    </div> 
+    <div class="cont">
+        <div id="info">
+            <p>King Edward Memorial Hospital and Seth Gordhandas Sunderdas Medical College is one of the foremost medical colleges and hospital in India, located in Mumbai, Maharashtra. It was founded in 1926; it is affiliated with Maharashtra University of Health Sciences (MUHS)</p>
+        </div>
+        <div>
+            <h2>services/facilities</h2>
+            <ul>
+                <li>Medical</li>
+                <li>Peadiatrics</li>
+                <li>Psychiatric & De Addiction</li>
+                <li>Chest Medicine</li>
+                <li>Skin & V.D</li>
+                <li>Gen.Surgery</li>
+                <li>Opthalmology</li>
+                <li>E.N.T.</li>
+                <li>Orthopedics</li>
+                <li>Obst & Gyn.</li>
+                <li>Anaesthesia (Pain Clinic)</li>
+                <li>Nephrology</li>
+                <li>Neurology</li>
+                <li>Neurosurgery</li>
+                <li>Cardiology</li>
+                <li>Ayurvedic</li>
+                <li>Gynac</li>
+                <li>And many more.....</li>
+            </ul>
+        </div>
+        <div>
+            <h2>About K.E.M.</h2>
+            <ul>
+                <li>Capacity: 1800+ bedded multi-specialized</li>
+                <li>Hospital annually attends to approximately 1.8 million out-patients and 85,000 in-patients. </li>
+                <li> It offers comprehensive medical and surgical care, providing basic services as well as advanced treatments across all specialties.</li>
+                <li>Funded by the Municipal Corporation of Greater, Mumbai.</li>
+                <li>Most of the services are free of cost.</li>
+            </ul>
+        </div>
+        <div>
+            <h2>Timing</h2>
+            <p>Open for 24 hours</p>
+        </div>
+        <div>
+            <h2>Address</h2>
+            <p>Acharya Donde Marg, Parel East, Parel, Mumbai, Maharashtra, 400012</p>
+        </div>
+        <div>
+            <p>For more information visit <a href="https://www.kem.edu/index" target="_blank">official website</a></p>
+        </div>
+    </div>
+    <footer style="text-align: center; color: antiquewhite;">
+        <h3>Seth GS Medical College and KEM Hospital</h3>
+        <p>Acharya Donde Marg, Parel, Mumbai – 400012. India</p>
+        <p>Phone 91-22-2410 7000</p>
+        <p>Fax: 91-22-2414 3435</p>
+        <p>Email: kemwebsite@kem.edu</p>
+    </footer>
+</body>
+</html>      

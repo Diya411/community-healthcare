@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>District form</title>
+    <style>
+        .table {
+
+            margin: 0 auto;
+            /* Center the table */
+            border-collapse: collapse;
+            /* Ensure no space between cells */
+        }
+
+        .table td {
+            padding: 10px;
+            /* Add padding for better spacing */
+            width: 33%;
+            /* Adjust width to fit the layout */
+            box-sizing: border-box;
+            /* Include padding in width calculation */
+        }
+
+        .body {
+            margin: 0 auto;
+        }
+
+        .hosp {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .user-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+            gap: .25rem;
+            margin-top: 1rem;
+        }
+
+        .card {
+            border: 1px solid black;
+            background-color: white;
+            padding: .5rem;
+
+        }
+
+        .card>.header {
+            margin-bottom: .25rem;
+        }
+
+        .card>.body {
+            font-size: .8rem;
+            color: #777;
+        }
+
+        .back-link {
+            font-size: 16px;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .back-link:hover {
+            background: #ff5722;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Multi-purpose hospitals in Mumbai(Goverment, Private and Trusted)</h1>
+    <div class="hosp">
+        <div class="user-cards">
+            <div class="card">
+                <a href="tata.html" target="_blank">
+                    <div class="header">The Tata Memorial Hospital (TMH)</div>
+                    <div class="body">Cancer hospital</div>
+                </a>
+            </div>
+            <div class="card">
+                <a href="kem.html" target="_blank">
+                    <div class="header">K.E.M Hospital </div>
+                    <div class="body">Multi-purpose</div>
+                </a>
+            </div>
+            <div class="card">
+                <a href="p.d.hinduja.html" target="_blank">
+                    <div class="header">P.D.Hinduja</div>
+                    <div class="body">Multi-purpose</div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <H2> Government Hospitals in Maharashtra </H4>
+        <div class="dist">
+            <H3>Select district : </H3>
+
+            <table cellpadding="10" cellspacing="0" width="90%" align="center">
+                <tr>
+                    <td>1. Ahmednagar (AH)</td>
+                    <td>2. Akola (AK)</td>
+                    <td>3. Amravati (AM)</td>
+                </tr>
+                <tr>
+                    <td>4. Aurangabad (AU)</td>
+                    <td>5. Beed (BI)</td>
+                    <td>6. Bhandara (BH)</td>
+                </tr>
+                <tr>
+                    <td>7. Buldhana (BU)</td>
+                    <td>8. Chandrapur (CH)</td>
+                    <td>9. Dhule (DH)</td>
+                </tr>
+                <tr>
+                    <td>10. Gadchiroli (GA)</td>
+                    <td>11. Gondia (GO)</td>
+                    <td>12. Hingoli (HI)</td>
+                </tr>
+                <tr>
+                    <td>13. Jalgaon (JL)</td>
+                    <td>14. Jalna (JN)</td>
+                    <td>15. Kolhapur (KO)</td>
+                </tr>
+                <tr>
+                    <td>16. Latur (LT)</td>
+                    <td>17. Mumbai City (MC)</td>
+                    <td>18. Mumbai Suburban (MU)</td>
+                </tr>
+                <tr>
+                    <td>19. Nagpur (NG)</td>
+                    <td>20. Nanded (ND)</td>
+                    <td>21. Nandurbar (NB)</td>
+                </tr>
+                <tr>
+                    <td>22. Nashik (NK)</td>
+                    <td>23. Osmanabad (OS)</td>
+                    <td>24. Palghar (PG)</td>
+                </tr>
+                <tr>
+                    <td>25. Parbhani (PR)</td>
+                    <td>26. Pune (PN)</td>
+                    <td>27. Raigad (RG)</td>
+                </tr>
+                <tr>
+                    <td>28. Ratnagiri (RT)</td>
+                    <td>29. Sangli (SL)</td>
+                    <td><a href="#" target="_blank">30. Satara (ST)</a></td>
+                </tr>
+                <tr>
+                    <td><a href="sindhudurg.html" target="_blank">31. Sindhudurg (SN)</a></td>
+                    <td>32. Solapur (SP)</td>
+                    <td>33. Thane (TH)</td>
+                </tr>
+                <tr>
+                    <td>34. Wardha (WR)</td>
+                    <td>35. Washim (WS)</td>
+                    <td>36. Yavatmal (YT)</td>
+                </tr>
+            </table>
+            <a href="home.html" class="back-link">← Back to Home</a>
+</body>
+
+</html>

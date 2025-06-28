@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancer</title>
+    <style>
+        /* Wrapper for the blurred background */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("tata.jpg");
+            background-size: cover;
+            background-position: center;
+            filter: blur(10px) grayscale(50%);
+            z-index: -1; /* Push background behind the content */
+        }
+
+        /* Content container */
+        .container {
+            position: relative;
+            width: 100%;
+            height: 20%;
+            background-color: rgba(0, 0, 0, 0.5); /* Black overlay for better contrast */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+        .cont {
+            position: relative;
+            width: auto;
+            background-color: rgba(76, 71, 71, 0.5); /* Semi-transparent overlay */
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            color: white;
+            max-width: 800px;
+            text-align: justify;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+        }
+        #info {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 20px;
+            margin-bottom: 1px;
+        }
+
+        #mission {
+            font-size: 20px;
+            color: darkblue;
+        }
+
+        #mission h2 {
+            margin-bottom: 1px;
+        }
+
+        #mission p {
+            font-size: 18px;
+            color: white;
+        }
+        #loc{
+            font-size: 20px;
+            color: darkblue;
+        }
+        #loc ul{
+            font-size: 18px;
+            color: white;
+        }
+
+        #about{
+            font-size: 20px;
+            color: darkblue;
+        }
+        #about ul{
+            font-size: 18px;
+            color: white;
+        }
+
+        #moreinfo{
+            font-size: large;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Blurred background -->
+    <div class="background"></div>
+
+    <!-- Content container -->
+    <div class="container">
+        <h1>Tata Memorial Centre</h1>
+    </div>    
+        <div class="cont">
+            <p id="info">The Tata Memorial Hospital (TMH) situated in Parel, Mumbai, is a cancer institute.<br> It is an autonomous institution under the administrative control of Department of Atomic Energy, Government of India.<br> Its current Director is Dr. Sudeep Gupta.<br></p><br>
+            <div id="mission">
+                <h2>Mission</h2>
+                <p >The Tata Memorial Centre's mission is to provide comprehensive cancer care to one and all, through its motto of excellence in services, education and research.</p>
+            </div>
+            <div id="loc">
+                <h2>Centers: </h2>
+                <ul>
+                    <li>Tata Memorial Hospital, Parel, Mumbai</li>
+                    <li>ACTREC, Kharghar, Navi Mumbai</li>
+                    <li>Centre for Cancer Epidemiology (CCE), Kharghar, Navi Mumbai</li>
+                    <li>Homi Bhabha Cancer Hospital and Research Centre (HBCH&RC), Visakhapatnam, Andhra Prades</li>
+                    <li>Homi Bhabha Cancer Hospital (HBCH), Sangrur, Punjab</li>
+                    <li>Homi Bhabha Cancer Hospital and Research Centre (HBCH&RC), Mullanpur, Punjab</li>
+                    <li>Dr. Bhubaneswar Borooah Cancer Institute (BBCI), Guwahati, Assam</li>
+                    <li>Homi Bhabha Cancer Hospital (HBCH), Varanasi, Uttar Pradesh</li>
+                    <li>Mahamana Pandit Madan Mohan Malviya Cancer Centre (MPMMCC), Varanasi, Uttar Pradesh</li>
+                    <li>Homi Bhabha Cancer Hospital & Research Centre (HBCH & RC), Muzaffarpur, Bihar</li>
+                </ul>
+            </div>
+            <div id="about">
+                <h2>About</h2>
+                <ul>
+                    <li>Capacity: 600++ beds</li>
+                    <li>Budget: Annual Budget is close to Rs. 120cr.</li>
+                    <li> Nearly 25,000 patients visit the clinics each year, not only from all over India but from neighbouring countries as well.</li>
+                    <li><b>About 60 per cent of patients seeking primary care are treated free of charge.</b></li>
+                </ul>
+            </div>
+            <div id="moreinfo">
+                <p>For more information visit <a href="https://tmc.gov.in/Home" target="_blank">official website</a></p>
+            </div>
+        </div>
+
+        <footer style="text-align: center; color: antiquewhite;">
+            <h3>TATA MEMORIAL CENTRE</h3>
+            <p>Dr. E Borges Road, Parel, Mumbai - 400 012 India<br>
+                Phone: (+91-22) 24177000, 24177300, 69537300</p>
+        </footer>
+    
+</body>
+</html>

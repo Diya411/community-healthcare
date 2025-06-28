@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Map with Symptoms</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 700px;
+        }
+
+        .popup {
+            max-width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const map = L.map('map').setView([20.5937, 78.9629], 5);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution:
+                    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            }).addTo(map);
+
+            fetch('/api/locations')
+                .then((response) => {
+                    if (!response.ok) throw new Error('Failed to fetch locations');
+                    return response.json();
+                })
+                .then((locations) => {
+                    locations.forEach((location) => {
+                        const { pincode, latitude, longitude } = location;
+
+                        if (!latitude || !longitude) return; // skip invalid coords
+
+                        fetch(`/api/symptoms/${encodeURIComponent(pincode)}`)
+                            .then((response) => {
+                                if (!response.ok) throw new Error(`No symptoms for pincode ${pincode}`);
+                                return response.json();
+                            })
+                            .then((symptomData) => {
+                                const entries = Array.isArray(symptomData) ? symptomData : [symptomData];
+
+                                const popupContent = entries
+                                    .map((entry, i) => {
+                                        const commonSymptoms = Array.isArray(entry.commonSymptoms) && entry.commonSymptoms.length
+                                            ? entry.commonSymptoms.join('<br>')
+                                            : 'No common symptoms available';
+
+                                        const detailedSymptoms = entry.detailedSymptoms || 'No detailed symptoms available';
+                                        const severity = entry.severity || 'Not specified';
+
+                                        return `
+                      <div style="margin-bottom: 15px;">
+                        <b>Entry ${i + 1}</b><br />
+                        <b>Common Symptoms:</b><br />${commonSymptoms}<br />
+                        <b>Detailed Symptoms:</b><br />${detailedSymptoms}<br />
+                        <b>Severity:</b> ${severity}
+                      </div>
+                    `;
+                                    })
+                                    .join('');
+
+                                const marker = L.marker([latitude, longitude]).addTo(map);
+                                marker.bindPopup(`<b>Pincode:</b> ${pincode}<br><br>${popupContent}`);
+                            })
+                            .catch((err) => {
+                                console.error(`Error fetching symptoms for pincode ${pincode}:`, err);
+                            });
+                    });
+                })
+                .catch((err) => {
+                    console.error('Error fetching locations:', err);
+                });
+        });
+    </script>
+</body>
+
+</html>

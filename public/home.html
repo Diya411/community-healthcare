@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en">
+
+<head>
+	<title>CE Project</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		.main {
+			width: 100%;
+			background: linear-gradient(to top, rgba(0, 0, 0, 0.5)50%, rgba(0, 0, 0, 0.5)50%), url(https://i.pinimg.com/736x/72/3b/f8/723bf831b674ed3fefdcd0e9c0030644.jpg);
+			background-position: center;
+			background-size: cover;
+			height: 100vh;
+		}
+
+		.navbar {
+			width: 1200px;
+			height: 75px;
+			margin: auto;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.icon {
+			width: 200px;
+			display: flex;
+			align-items: center;
+		}
+
+		.logo {
+			color: #ff7200;
+			font-size: 35px;
+			font-family: Arial;
+			padding-left: 20px;
+		}
+
+		.menu {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		ul {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		ul li {
+			list-style: none;
+			margin-left: 40px;
+			font-size: 14px;
+			position: relative;
+		}
+
+		ul li a {
+			text-decoration: none;
+			color: #fff;
+			font-family: Arial;
+			font-weight: bold;
+			transition: 0.4s ease-in-out;
+		}
+
+		ul li a:hover {
+			color: #ff7200;
+		}
+
+		.dropdown-content {
+			display: none;
+			position: absolute;
+			background-color: #333;
+			min-width: 160px;
+			box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+			z-index: 1;
+		}
+
+		.dropdown-content a {
+			color: white;
+			padding: 12px 16px;
+			text-decoration: none;
+			display: block;
+			font-size: 14px;
+		}
+
+		.dropdown-content a:hover {
+			background-color: #faf8f7;
+		}
+
+		.dropdown:hover .dropdown-content {
+			display: block;
+		}
+
+		.dropdown:hover .dropbtn {
+			color: #ff7200;
+		}
+
+		.search {
+			display: flex;
+			align-items: center;
+		}
+
+		.srch {
+			font-family: 'Times New Roman';
+			width: 200px;
+			height: 40px;
+			background: transparent;
+			border: 1px solid #ff7200;
+			color: #fff;
+			font-size: 16px;
+			padding: 10px;
+			border-bottom-left-radius: 5px;
+			border-top-left-radius: 5px;
+		}
+
+		.srch::placeholder {
+			color: #fff;
+			font-family: 'Times New Roman';
+		}
+
+
+		.btn {
+			width: 100px;
+			height: 40px;
+			background: #ff7200;
+			border: 2px solid #ff7200;
+			color: #fff;
+			font-size: 15px;
+			border-bottom-right-radius: 5px;
+			border-top-right-radius: 5px;
+			transition: 0.2s ease;
+			cursor: pointer;
+		}
+
+		.btn:hover {
+			color: #000;
+		}
+
+		.btn:focus {
+			outline: none;
+		}
+
+		.srch:focus {
+			outline: none;
+		}
+
+		.content {
+			width: 1200px;
+			height: auto;
+			margin: auto;
+			color: #fff;
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-start;
+		}
+
+		.description {
+			width: 60%;
+		}
+
+		.description p {
+			padding-left: 20px;
+			padding-bottom: 25px;
+			font-family: Arial;
+			letter-spacing: 1.2px;
+			line-height: 30px;
+		}
+
+		.description h1 {
+			font-family: 'Times New Roman';
+			font-size: 50px;
+			padding-left: 20px;
+			margin-top: 9%;
+			letter-spacing: 2px;
+		}
+
+		.description .cn {
+			width: 180px;
+			height: 40px;
+			background: #ff7200;
+			border: none;
+			margin-bottom: 10px;
+			margin-left: 20px;
+			font-size: 18px;
+			border-radius: 10px;
+			cursor: pointer;
+			transition: .4s ease;
+		}
+
+		.description .cn a {
+			text-decoration: none;
+			color: #000;
+			transition: .3s ease;
+		}
+
+		.cn:hover {
+			background-color: #fff;
+		}
+
+		.description span {
+			color: #ff7200;
+			font-size: 65px
+		}
+
+
+		.slideshow {
+			width: 35%;
+			height: 400px;
+			position: relative;
+			overflow: hidden;
+			border-radius: 10px;
+		}
+
+		.slides {
+			display: flex;
+			width: 600%;
+			/* Six images, so 600% width */
+			height: 100%;
+			animation: slide 100s infinite linear;
+			/* Adjust timing if needed */
+		}
+
+		@keyframes slide {
+			0% {
+				transform: translateX(0);
+			}
+
+			16.66% {
+				transform: translateX(-100%);
+			}
+
+			/* Transition to the second image */
+			33.33% {
+				transform: translateX(-200%);
+			}
+
+			/* Transition to the third image */
+			50% {
+				transform: translateX(-300%);
+			}
+
+			/* Transition to the fourth image */
+			66.66% {
+				transform: translateX(-400%);
+			}
+
+			/* Transition to the fifth image */
+			83.33% {
+				transform: translateX(-500%);
+			}
+
+			/* Transition to the sixth image */
+			100% {
+				transform: translateX(0);
+			}
+
+			/* Loop back to the first image */
+		}
+
+		.slides img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			/* Ensure images cover the area */
+		}
+	</style>
+</head>
+
+<body>
+	<div class="main">
+		<div class="navbar">
+			<div class="icon">
+				<h2 class="logo">
+					<i class="fa-solid fa-hospital" style="font-size: 60px"></i>
+				</h2>
+			</div>
+
+			<div class="menu">
+				<ul>
+					<li><a href="home.html">HOME</a></li>
+					<li><a href="Synopsis 24-35.pdf">ABOUT</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropbtn">SERVICE
+							<i class="fa fa-caret-down"></i>
+						</a>
+						<div class="dropdown-content">
+							<a href="doctors.html">Need a doctor?</a>
+							<a href="schemes.html">Government Health related Schemes</a>
+							<a href="gov_hospital.html">Hospital List In Maharashtra</a>
+							<a href="diet.html">Nutrient Guide</a>
+
+						</div>
+					</li>
+					<li><a href="contact us.html">CONTACT</a></li>
+				</ul>
+			</div>
+
+			<div class="search">
+				<input class="srch" type="search" name="" placeholder="Type To text" />
+				<a href="#"> <button class="btn">Search</button></a>
+			</div>
+			<div class="menu">
+				<ul>
+					<li>
+						<a href="regi.html">Sign-Up</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="content">
+			<div class="description">
+				<h1>Community<br /><span>HealthCare</span> <br />Website</h1>
+				<p class="par">
+					Welcome to our Hospital Website. Our platform allows users to submit
+					symptoms, which are securely saved in our database for quick review
+					by healthcare professionals. Experience the future of healthcare
+					with our website, prioritizing your health and well-being.
+				</p>
+
+				<button class="cn">
+					<a href="http://localhost:3000">Fill the form</a>
+				</button>
+				<button class="cn">
+					<a href="http://localhost:3000/map">Health Insights Map</a>
+				</button>
+				<button class="cn">
+					<a href="emergency.html">Emergency Contact</a>
+				</button><br>
+				<button class="cn">
+					<a href="bmi.html">BMI Calculator</a>
+				</button>
+				<button class="cn">
+					<a href="calorie meter.html">Calculate Calories</a>
+				</button>
+
+			</div>
+			<div class="slideshow">
+				<div class="slides">
+					<img src="https://media.istockphoto.com/id/1373659740/photo/shot-of-a-young-doctor-sharing-information-from-his-digital-tablet-with-an-older-patient.jpg?s=612x612&w=0&k=20&c=xi-5BceyNKDF919oSK3GheekuIGTJ5Jl3ccWopz47LE="
+						alt="Doc-Patient" />
+					<img src="https://media.istockphoto.com/id/1127069581/photo/medical-technology-concept.jpg?s=612x612&w=0&k=20&c=qp_smilHlWhGzZ-NcftDLugFs_EVCLfX2Z7WCAD1v6A="
+						alt="digital Hospital" />
+					<img src="https://i.pinimg.com/736x/72/3b/f8/723bf831b674ed3fefdcd0e9c0030644.jpg"
+						alt="hospital corridor" />
+					<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSG66G0DdCnbvhGxYaVeB_IcEMgZr1_aRsjdA&s"
+						alt="digi med" />
+					<img src="https://www.onlinelogomaker.com/blog/wp-content/uploads/2017/07/medical-logo.jpg"
+						alt="Heart" />
+					<img src="https://images.pexels.com/photos/2383010/pexels-photo-2383010.jpeg?cs=srgb&dl=pexels-totalshape-2383010.jpg&fm=jpg"
+						alt="leaf" />
+					<img src="https://images.shiksha.com/mediadata/images/articles/1665955862phpp32sMp.jpeg"
+						alt="lego" />
+					<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-ih44cKnGUECuzg3y5WWDrM-cW8wywT9XzVgr1LYAI2o_70gQaQMVjgp-wKt5f_wpfZc&usqp=CAU"
+						alt="doc" />
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Find doctor</title>
+	<style>
+		body {
+			font-family: 'Poppins', sans-serif;
+			background-color: #84bd9e;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding: 20px;
+		}
+
+		h1 {
+			font-size: 3em;
+			/* Increase font size here */
+			margin-bottom: 20px;
+			color: #003366;
+		}
+
+		.card-container {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			gap: 20px;
+		}
+
+		.card {
+			background-color: #fff;
+			border-radius: 10px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			overflow: hidden;
+			width: 300px;
+			cursor: pointer;
+			text-align: center;
+			transition: transform 0.2s;
+		}
+
+		.card:hover {
+			transform: translateY(-5px);
+		}
+
+		.card img {
+			width: 100%;
+			height: 200px;
+			object-fit: cover;
+		}
+
+		.card-content {
+			padding: 15px;
+		}
+
+		.card-title {
+			font-size: 1.5em;
+			margin: 10px 0;
+			color: #333;
+		}
+
+		.card-description {
+			font-size: 1em;
+			color: #666;
+		}
+
+		.top {
+			object-position: top;
+		}
+
+		/* New button styling */
+		.back-link {
+			font-size: 16px;
+			padding: 10px 20px;
+			text-decoration: none;
+			background: #3e2093;
+			color: #fff;
+			border-radius: 6px;
+			display: inline-block;
+			transition: all 0.3s ease;
+			margin-top: 20px;
+		}
+
+		.back-link:hover {
+			background: #ff5722;
+			color: #fff;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>Some well-known Doctors in Mumbai</h1>
+	<div class="card-container">
+		<div class="card" onclick="window.location.href='https://skinandshape.com/'">
+			<img src="https://skinandshape.com/wp-content/uploads/2023/07/dr-anju-methil.jpg" alt="Person 1" />
+			<div class="card-content">
+				<div class="card-title">Dr. Anju Methil</div>
+				<div class="card-description">
+					<h3>Dermatologist and Cosmetologist</h3>
+					Andheri West, Mumbai, Maharashtra 400053 - 087799 11797
+				</div>
+			</div>
+		</div>
+
+		<div class="card" onclick="window.location.href='https://in.linkedin.com/in/prajakta-kimmatkar-4007b329'">
+			<img src="https://cdn.hexahealth.com/Image/webp/480x480/3e766c72-4f06-4f52-8c6e-07d3479608ba.webp"
+				alt="Person 2" />
+			<div class="card-content">
+				<div class="card-title">Dr. Prajakta Kimmatkar</div>
+				<div class="card-description">
+					<h3>Pediatrician</h3>
+					Govandi East, Mumbai, Maharashtra 400088 <br />
+					088004 93419
+				</div>
+			</div>
+		</div>
+
+		<div class="card" onclick="window.location.href=''">
+			<img src="https://imagesx.practo.com/providers/dr-pendse-ajay-general-physician-mumbai-e642ad80-033b-4c5c-8deb-41b0a08281a6.jpg?i_type=t_100x100-4x"
+				alt="Person 3" class="center" />
+			<div class="card-content">
+				<div class="card-title">Dr. Ajay Pendse</div>
+				<div class="card-description">
+					<h3>Pediatrician</h3>
+					Dadar West, Mumbai, Maharashtra 400028 <br />
+					080971 99719
+				</div>
+			</div>
+		</div>
+
+		<div class="card"
+			onclick="window.location.href='https://kivihealth.com/mumbai/new-prabhadevi-road/general-physician/-meenal-ajay-pendse'">
+			<img src="https://files.kivihealth.com/cache/profile_pic/20210423185040_IMG_2573.jpg" alt="Person 4" />
+			<div class="card-content">
+				<div class="card-title">Dr. Meenal Ajay Pendse</div>
+				<div class="card-description">
+					<h3>General Physician</h3>
+					New Prabhadevi Road, Mumbai, Maharashtra 400025 <br />
+					98694 73267
+				</div>
+			</div>
+		</div>
+
+		<div class="card"
+			onclick="window.location.href='https://www.kokilabenhospital.com/professionals/anshumalashukla-kulkarni.html'">
+			<img src="https://kdahweb-static.kokilabenhospital.com/kdah-2019/product/1580456804.jpg" alt="Person 5" />
+			<div class="card-content">
+				<div class="card-title">Dr. Anshumala Kulkarni</div>
+				<div class="card-description">
+					<h3>
+						Gynecologist, Robotic Surgeon, Laparoscopic & Endometriosis
+						specialist
+					</h3>
+					Andheri West, Mumbai, Maharashtra 400061 <br />
+					022 4269 6969
+				</div>
+			</div>
+		</div>
+
+		<div class="card" onclick="window.location.href='https://drketanparmar.in/'">
+			<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYN3o191dZQxjFcXwfjfU2ToM8hn1UcTDvyg&s"
+				alt="Person 6" />
+			<div class="card-content">
+				<div class="card-title">Dr. Ketan Parmar</div>
+				<div class="card-description">
+					<h3>Psychiatry, Psychologist And Sexologist</h3>
+					Borivali, Mumbai, Maharashtra 400066 <br />
+					098209 00115
+				</div>
+			</div>
+		</div>
+
+		<div class="card" onclick="window.location.href='https://www.hindujahospital.com/doctors/rashmi-shukla'">
+			<img src="https://hinduja-prod-assets.s3.ap-south-1.amazonaws.com/s3fs-public/2022-02/rashmi-shukla.png?VersionId=IDng53IhXV_IE.kv3Gr1o_hXzXGKYNP7"
+				alt="Person 7" class="top" />
+			<div class="card-content">
+				<div class="card-title">Dr. Rashmi Shukla</div>
+				<div class="card-description">
+					<h3>Ophthalmologist</h3>
+					Mahim West, Mumbai, Maharashtra 400016 <br />
+					022 4510 8111
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Added Back to Home Button -->
+	<a href="home.html" class="back-link">← Back to Home</a>
+</body>
+
+</html>

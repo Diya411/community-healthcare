@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>registeration Form</title>
+    <script defer src="./regi.js"></script>
+    <style>
+        body{
+            background-image: url("pexels-anete-lusina-6331082.jpg");
+            background-repeat: no-repeat;
+            background-size: 100%; 
+              
+        }
+
+        #form{
+            align-content: center;
+            align-items: center;
+            width: 50%;
+            height: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 15%;
+            vertical-align: middle;
+            padding: 20px;
+            background: linear-gradient(to right, #0f2070, #263c8f, #33467b);
+            border-radius: 5px;
+            font-size: 25;
+            color: deepskyblue;
+            text-align: center;
+        
+        }
+
+        #form h1{
+            color: aliceblue;
+
+        }
+
+        #form button{
+            padding: 10px;
+            margin-top: 10px;
+            width: 50%;
+            color: azure;
+            background-color: aqua;
+            border-radius: 5px;
+            
+        }
+
+        .input-control{
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-control input{
+            align-items: center;
+            align-content: center;
+            border: 3px solid #4ec3d7;
+            border-radius: 3px;
+            display: block;
+            width: 95%;
+            padding: 10px;
+        }
+
+        .input-control input:focus{
+            outline: 0;
+        }
+
+        .input-control.success input{
+            border-color: chartreuse;
+
+        }
+
+        .input-control.error input{
+            border-color: darkred;
+        }
+
+        .input-control.error{
+            color: darkred;
+            font-size: 10px;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <form id="form" class="form" action="savedata.php" method="post" >
+            <h1>Registration form</h1>
+            <div class="input-control">
+                <label for="username">Name</label>
+                <input id="username" name="username" type="text">
+                <div class="error"></div>
+            </div>
+            <div class="input-control">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email">
+                <div class="error"></div>
+            </div>
+            <div class="input-control">
+                <label for="phone">Phone number</label>
+                <input id="pn" name="pn" type="tel">
+                <div class="error"></div>
+            </div>
+            <button type="submit">Sign-up</button>
+        </form>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+                const form = document.getElementById('form');
+                const username = document.getElementById('username');
+                const email = document.getElementById('email');
+                const pn = document.getElementById('pn');
+
+                form.addEventListener('submit', e => {
+                    e.preventDefault();
+                    console.log('Form submit button clicked');
+                    validateInputs();
+                });
+
+                console.log('JavaScript is working!');
+
+                const setSuccess = element => {
+                    const inputControl = element.parentElement;
+                    const errorDisplay = inputControl.querySelector('.error');
+
+                    errorDisplay.innerText = '';
+                    inputControl.classList.add('success');
+                    inputControl.classList.remove('error');
+                };
+
+                const setError = (element, message) => {
+                    const inputControl = element.parentElement;
+                    const errorDisplay = inputControl.querySelector('.error');
+
+                    errorDisplay.innerText = message;
+                    inputControl.classList.add('error');
+                    inputControl.classList.remove('success');
+                };
+
+                const isEmailValid = email => {
+                    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                    return emailPattern.test(email);
+                };
+
+                const validateInputs = () => {
+                    const usernameValue = username.value.trim();
+                    const emailValue = email.value.trim();
+                    const pnValue = pn.value.trim();
+
+                    console.log('Username:', usernameValue);
+                    console.log('Email:', emailValue);
+                    console.log('Phone number:', pnValue);
+
+                    if (usernameValue === '') {
+                        setError(username, 'Username is required');
+                    } else {
+                        setSuccess(username);
+                    }
+
+                    if (emailValue === '') {
+                        setError(email, 'Email is required');
+                    } else if (!isEmailValid(emailValue)) {
+                        setError(email, 'Provide a valid email address');
+                    } else {
+                        setSuccess(email);
+                    }
+
+                    // Example phone number validation
+                    if (pnValue === '') {
+                        setError(pn, 'Phone number is required');
+                    } else {
+                        setSuccess(pn);
+                    }
+                };
+            });
+
+    </script>
+</body>
+</html>

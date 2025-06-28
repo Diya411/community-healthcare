@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BMI Calculator</title>
+  <style type="text/css">
+    body {
+      align-items: center;
+      justify-content: center;
+      background-color: #f0b785;
+      margin: 0;
+      font-family: 'Roboto Mono', monospace;
+      position: relative;
+      height: 100vh;
+    }
+
+    .blink {
+      animation-name: blink;
+      width: 800px;
+      animation-duration: 8s;
+      animation-timing-function: ease-in;
+      animation-iteration-count: infinite;
+      position: relative;
+      top: 50px;
+      left: 22%;
+      text-align: center;
+      font-size: 20px;
+      color: #81007F;
+    }
+
+    @keyframes blink {
+      0% {
+        color: #81007F;
+      }
+
+      50% {
+        color: white;
+      }
+
+      100% {
+        color: #81007F;
+      }
+    }
+
+    .cont {
+      position: relative;
+      top: 120px;
+      padding: 20px;
+      width: 700px;
+      margin: 0 auto;
+      background-color: white;
+      border-radius: 15px;
+      text-align: center;
+      font-size: 17px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    input {
+      border: 2px solid #008080;
+      border-radius: 5px;
+      padding: 10px;
+      margin: 10px 0;
+      display: block;
+      width: calc(100% - 22px);
+      box-sizing: border-box;
+    }
+
+    #height_m,
+    #height_cm,
+    #weight_pd {
+      display: none;
+    }
+
+    .hideans {
+      display: none;
+      text-align: center;
+    }
+
+    .ans {
+      font-size: 35px;
+    }
+
+    .status {
+      font-size: 25px;
+    }
+
+    .back-link {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      text-decoration: none;
+      font-size: 18px;
+      padding: 10px 20px;
+      background-color: #81007F;
+      color: white;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .back-link:hover {
+      background-color: #fff;
+      color: #81007F;
+      text-decoration: none;
+    }
+
+    @media (max-width: 786px) {
+      body {
+        width: 100%;
+        padding: 5px;
+        text-align: center;
+      }
+
+      h1 {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div style="text-align: center; padding-top: 50px; font-size: 35px; color: green;">
+    <h1>BMI CALCULATOR</h1>
+  </div>
+  <div class="blink">
+    <b>The body mass index (BMI) calculator estimates the amount of body fat a person has in relation to age, height,
+      and weight.</b>
+  </div>
+  <div class="cont">
+    <form id="input" class="form1" onsubmit="return false;">
+      Height:
+      <input type="number" id="height_m" name="meter" placeholder="Enter height in meter">
+      <input type="number" id="height_cm" name="centimeter" placeholder="Enter height in cm">
+      <input type="number" id="height_ft" name="feet" placeholder="feet">
+      <input type="number" id="height_in" name="inches" placeholder="inches">
+      <select name="height" id="height">
+        <option value="feet">feet</option>
+        <option value="meter">meter</option>
+        <option value="cm">centimeter</option>
+      </select><br><br>
+      Weight:
+      <input type="number" id="weight_kg" name="kg" placeholder="Enter weight in kg" min="0">
+      <input type="number" id="weight_pd" name="pound" placeholder="Enter weight in pound">
+      <select name="weight" id="weight">
+        <option value="kg">kg</option>
+        <option value="pound">pound</option>
+      </select><br><br><br><br>
+      <button type="button" id="comp" onclick="calculate()">COMPUTE</button>
+    </form>
+    <div class="hideans" id="res">
+      <h2>YOUR BMI IS: <span class="ans"></span></h2>
+      <p class="status"></p>
+      <div class="measurment">
+        <p>Underweight = &lt; 18.5</p>
+        <p>Normal weight = 18.5 - 24.9</p>
+        <p>Overweight = 25 - 29.9</p>
+        <p>Obesity = BMI 30 or greater</p>
+        <button id="try" onclick="location.reload()">TRY AGAIN</button>
+      </div>
+    </div>
+  </div>
+
+  <a href="home.html" class="back-link">← Back to Home</a>
+
+  <script>
+    const weightSelect = document.getElementById('weight');
+    const weight_kg = document.getElementById('weight_kg');
+    const weight_pd = document.getElementById('weight_pd');
+
+    weightSelect.addEventListener('change', () => {
+      if (weightSelect.value === 'kg') {
+        weight_kg.style.display = 'block';
+        weight_pd.style.display = 'none';
+      } else if (weightSelect.value === 'pound') {
+        weight_kg.style.display = 'none';
+        weight_pd.style.display = 'block';
+      }
+    });
+
+    const heightSelect = document.getElementById('height');
+    const height_m = document.getElementById('height_m');
+    const height_cm = document.getElementById('height_cm');
+    const height_ft = document.getElementById('height_ft');
+    const height_in = document.getElementById('height_in');
+
+    heightSelect.addEventListener('change', () => {
+      height_m.style.display = 'none';
+      height_cm.style.display = 'none';
+      height_ft.style.display = 'none';
+      height_in.style.display = 'none';
+
+      if (heightSelect.value === 'meter') {
+        height_m.style.display = 'block';
+      } else if (heightSelect.value === 'cm') {
+        height_cm.style.display = 'block';
+      } else if (heightSelect.value === 'feet') {
+        height_ft.style.display = 'block';
+        height_in.style.display = 'block';
+      }
+    });
+
+    function calculate() {
+      document.getElementById('res').classList.remove('hideans');
+      document.getElementById('input').style.display = 'none';
+
+      let heightInMeters = 0;
+      let weightInKg = 0;
+
+      if (heightSelect.value === 'meter') {
+        heightInMeters = parseFloat(height_m.value);
+      } else if (heightSelect.value === 'cm') {
+        heightInMeters = parseFloat(height_cm.value) * 0.01;
+      } else if (heightSelect.value === 'feet') {
+        heightInMeters = (parseFloat(height_ft.value) * 0.3048) + (parseFloat(height_in.value) * 0.0254);
+      }
+
+      if (weightSelect.value === 'kg') {
+        weightInKg = parseFloat(weight_kg.value);
+      } else if (weightSelect.value === 'pound') {
+        weightInKg = parseFloat(weight_pd.value) * 0.453592;
+      }
+
+      const bmi = (weightInKg / (heightInMeters ** 2)).toFixed(2);
+
+      const bmiResult = document.querySelector('.ans');
+      const bmiStatus = document.querySelector('.status');
+
+      bmiResult.innerText = bmi;
+
+      if (bmi < 18.5) {
+        bmiStatus.innerText = 'You are Underweight';
+      } else if (bmi >= 18.5 && bmi < 24.9) {
+        bmiStatus.innerText = 'You have Normal weight';
+      } else if (bmi >= 25 && bmi < 29.9) {
+        bmiStatus.innerText = 'You are Overweight';
+      } else if (bmi >= 30) {
+        bmiStatus.innerText = 'You are Obese';
+      }
+    }
+  </script>
+</body>
+
+</html>

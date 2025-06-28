@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancer</title>
+    <style>
+        /* Wrapper for the blurred background */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("p.d.hinduja.jpg");
+            background-size: cover;
+            background-position: center;
+            filter: blur(10px) grayscale(50%);
+            z-index: -1; /* Push background behind the content */
+        }
+
+        /* Content container */
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 100px;
+            background-color: rgba(0, 0, 0, 0.5); /* Black overlay for better contrast */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+        #cont{
+            position: relative;
+            width: auto;
+            background-color: rgba(76, 71, 71, 0.5); /* Semi-transparent overlay */
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            color: white;
+            max-width: 800px;
+            text-align: justify;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        h3{
+            font-size: 35px;
+            color: darkblue;
+
+        }
+
+        p{
+            font-size: 18px;
+            color: white;
+        }
+
+        ul{
+            font-size: 18px;
+            color: white;  
+        }
+
+        li{
+            font-size: 18px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Blurred background -->
+    <div class="background"></div>
+
+    <!-- Content container -->
+    <div class="container">
+        <h1>P. D. Hinduja</h1>
+    </div>
+    <div id="cont">
+        <div>
+            <p>The P. D. Hinduja National Hospital and Medical Research Centre is a multi-specialty, tertiary-care hospital in Mumbai, India. It was founded in 1951 by Parmanand Deepchand Hinduja, in collaboration with the Massachusetts General Hospital, the main teaching hospital of Harvard Medical School, Boston.</p>
+        </div>
+        <div id="about">
+            <h3>About:</h3>
+            <p>Hinduja Hospital is ranked the 6th-best hospital in India, 3rd-best among the private hospitals in India, best in Western India, best multi-speciality hospital in metros, and the cleanest hospital in Mumbai.</p>
+            <p>Hinduja Hospital, Mahim, is a not-for-profit institution, with at least 20% of its total capacity reserved for people from the economically weaker section. It has committed 10% of its total beds for subsidised / concessional treatments, and 10% beds for completely free treatments.</p>
+            <p>300+ Consultants; More than 800+ nurses & 3600 employees treating more than 1 Lakh patients annually</p>
+            <p>More than 11  Lakh Lab Tests & 1.3 Lakh  Imaging / Nuclear Medicine Investigations performed annually</p>
+
+        </div>
+        <div id="specifications">
+            <h3> Centres of Excellence:</h3>
+            <ul>
+                <li>Centre for Cancer Care</li>
+                <li>Centre for Cardiac Care</li>
+                <li>Centre for Neuro Care</li>
+                <li>Centre for Orthopedic Care</li>
+            </ul>
+            <h3>Specialities :</h3>
+            <ul>
+                <li>Anaesthesiology</li>
+                <li>Dental</li>
+                <li>ENT</li>
+                <li>Dermatology</li>
+                <li>Bone Marrow Transplantation</li>
+                <li>Gynecology</li>
+                <li>And many more.....</li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Branches:</h3>
+            <ol>
+                <li>Hinduja Hospital, Mahim, Mumbai, maharashtra</li>
+                <li>Hinduja Healthcare Surgical, Khar:, maharashtra</li>
+            </ol>
+        </div>
+
+        <div>
+            <h3>Contact:</h3>
+            <ul>
+                <li>Hinduja Hospital, Mahim</li>
+                <ol>
+                    <li>24x7 Assistance: 022 24452575</li>
+                    <li>Ambulance & Emergency: 09820885000</li>
+                    <li>Blood Bank: 022 2444 7752</li>
+                </ol>
+            </ul>
+            <ul>
+                <li>Hinduja Healthcare Surgical, Khar</li>
+                <ol>
+                    <li>24x7 Assistance: 022- 61746000 / 022-4888 4000</li>
+                    <li>Ambulance & Emergency: 022-61746099 / 022-61746098</li>
+                </ol>
+            </ul>
+
+            <h3>Time: </h3>
+            <ul>
+                <p>Board Line, Emergency, Admission & Billing - 24 X7, 365 days</p>
+                <p>OPD appointments - 7 am to 10 pm,; Mon - Sat except on Sunday and public holidays</p>
+                <p>Health Check Up - 8 am to 4 pm, Mon - Sat except on Sunday and public holidays</p>
+            </ul>
+
+            
+        </div>
+        
+    </div>
+    <footer style="text-align: center; color: antiquewhite; font-size: 20px;">
+        P. D. Hinduja National Hospital & Medical Research Centre <br> Veer Savarkar Marg, Mahim, Mumbai,<br> Maharashtra 400016, India<br>
+        <b>Email:</b> info@hindujahospital.com.<br><br>
+        P.D. Hinduja Hospital and Medical Research Centre, Khar Facility (Formerly Hinduja Healthcare Surgical) <br>724, 11th Road, Khar West, Mumbai - 400052, India<br>
+        <b>Email:</b> info.khar@hindujahospital.com<br>
+    </footer>
+</body>
+</html>

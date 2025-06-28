@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthCare Schemes</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Quicksand:wght@300..700&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Quicksand", sans-serif;
+        }
+
+        body {
+            background-color: #0d0a0b;
+            background: linear-gradient(145deg, #55566a 0%, #131318 76%);
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr;
+            place-items: center;
+            min-height: 100vh;
+        }
+
+        .content {
+            padding-left: 120px;
+            color: #c7c7c7c9;
+            user-select: none;
+        }
+
+        .content h1 {
+            font-family: "Dancing Script", cursive;
+            font-size: clamp(1rem, 3vw, 6rem);
+            font-weight: 700;
+            background: -webkit-linear-gradient(0deg, #f76591, #ffc16f);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+            margin-bottom: 36px;
+            padding-left: 10px;
+        }
+
+        .content p {
+            font-size: clamp(0.9rem, 4vw, 1.2rem);
+            line-height: 1.6;
+            padding-right: 100px;
+        }
+
+        .btn {
+            background-color: #f76591;
+            background-image: linear-gradient(-180deg, #ffc16f, #f76591);
+            font-size: clamp(0.8rem, 8vw, 0.9rem);
+            font-weight: 600;
+            color: #fff;
+            width: max-content;
+            outline: 0;
+            border: 0;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 10px 20px;
+            margin-top: 26px;
+            text-align: center;
+            transform: scale(1);
+            transition: all 0.2s ease-in;
+            cursor: pointer;
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+            pointer-events: auto;
+        }
+
+        .btn:hover {
+            box-shadow: 0 4px 10px rgba(247, 101, 145, 0.5);
+            transform: scale(0.98);
+        }
+
+        .stack {
+            position: relative;
+        }
+
+        .card {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+            width: 350px;
+            height: 500px;
+            border-radius: 2rem;
+            box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.25),
+                0 15px 20px 0 rgba(0, 0, 0, 0.125);
+            transition: transform 0.6s;
+            user-select: none;
+            z-index: 1;
+            /* Set the default z-index for the cards */
+        }
+
+        .card:nth-last-child(1) {
+            z-index: 3;
+            /* Bring the last card to the front */
+        }
+
+        .card:nth-last-child(2) {
+            z-index: 2;
+            /* Next card in line */
+        }
+
+        .card-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .card-text {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            color: #ffffff;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 5px;
+            border-radius: 5px;
+            font-size: clamp(0.8rem, 2vw, 1rem);
+        }
+
+        .card img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            object-fit: cover;
+            pointer-events: none;
+        }
+
+        .card:nth-last-child(n + 5) {
+            --x: calc(-50% + 90px);
+            transform: translate(var(--x), -50%) scale(0.85);
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.01);
+        }
+
+        .card:nth-last-child(4) {
+            --x: calc(-50% + 60px);
+            transform: translate(var(--x), -50%) scale(0.9);
+        }
+
+        .card:nth-last-child(3) {
+            --x: calc(-50% + 30px);
+            transform: translate(var(--x), -50%) scale(0.95);
+        }
+
+        .card:nth-last-child(2) {
+            --x: calc(-50%);
+            transform: translate(var(--x), -50%) scale(1);
+        }
+
+        .card:nth-last-child(1) {
+            --x: calc(-50% - 30px);
+            transform: translate(var(--x), -50%) scale(1.05);
+        }
+
+        .card:nth-last-child(1) img {
+            box-shadow: 0 1px 5px 5px rgba(255, 193, 111, 0.5);
+        }
+
+        .swap {
+            animation: swap 1.3s ease-out forwards;
+        }
+
+        @keyframes swap {
+            30% {
+                transform: translate(calc(var(--x) - 250px), -50%) scale(0.85) rotate(-5deg) rotateY(65deg);
+            }
+
+            100% {
+                transform: translate(calc(var(--x) - 30px), -50%) scale(0.5);
+                z-index: -1;
+            }
+        }
+
+        /* Media queries for other classes */
+        @media (max-width: 950px) {
+            main {
+                grid-template-columns: 1fr;
+                grid-template-rows: 4fr 3fr;
+                grid-template-areas:
+                    "stacked"
+                    "content";
+            }
+
+            .content {
+                grid-area: content;
+                text-align: center;
+                padding: 0 90px;
+            }
+
+            .stack {
+                grid-area: stacked;
+            }
+
+            .card {
+                width: 220px;
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            main {
+                grid-template-rows: 1fr 1fr;
+            }
+
+            .content {
+                padding: 0 50px;
+            }
+
+            .content h1 {
+                padding-left: 0;
+            }
+
+            .btn {
+                padding: 8px 16px;
+            }
+
+            .card {
+                width: 180px;
+                height: 260px;
+            }
+        }
+
+        /* Dropdown styles */
+        .dropdown {
+            display: none;
+            /* Hidden by default */
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 200px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            margin-top: 10px;
+            /* Add some space from the button */
+        }
+
+        .dropdown a {
+            color: #555;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown a:hover {
+            background-color: #f76591;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="content">
+            <h1 align="center">Government of India-<br>
+                Ministry of Health and Family Welfare<br>
+                HEALTHCARE SCHEMES</h1>
+            <p>
+                Public Health is a State subject; hence, the responsibility of providing medical assistance to patients
+                of all income groups is of respective State/ UT Governments. However, National Health Mission (NHM) – a
+                flagship programme of the Ministry with its two Sub-Missions, National Rural Health Mission (NRHM) and
+                National Urban Health Mission (NUHM), supports States /UTs to strengthen their health care systems so as
+                to provide universal access to equitable, affordable and quality health care services.
+                <br><br>
+                The schemes launched under NHM are available free of cost to all income groups visiting Public Health
+                Facilities at sub district and district level are given below:
+                <br>
+                <br>
+                The following programmes/ schemes are run by government under National Health Mission:
+            </p>
+            <button class="btn" id="exploreBtn">Explore More</button> <!-- Added id for button -->
+            <div class="dropdown" id="dropdownMenu">
+                <a href="AayushmanBharat.html" target="_blank">Aayushman Bharat Scheme</a>
+                <a href="Maternal.html" target="_blank">Reproductive, Maternal, Neonatal, Child and Adolescent health
+                    Programmes</a>
+                <a href="Nutritional.html" target="_blank">National Nutritional Programmes</a>
+                <a href="communicable.html" target="_blank">Communicable Diseases</a>
+                <a href="non-communicable.html" target="_blank">Non-communicable Diseases</a>
+            </div><br>
+            <button class="btn" id="backHomeBtn">
+                <a href="home.html" class="back-link">← Back to Home</a>
+            </button>
+        </div>
+
+        <div class="stack">
+            <div class="card">
+                <div class="card-content">
+                    <a href="Maternal.html" target="_blank">
+                        <img src="https://img.freepik.com/premium-photo/young-pregnant-woman-visit-gynecologist-doctor-hospital-medical-clinic-pregnancy-consulta_1346034-86386.jpg?w=360"
+                            alt="Reproductive, Maternal, Neonatal, Child and Adolescent health" />
+                        <div class="card-text">
+                            Reproductive, Maternal, Neonatal, Child and Adolescent health Programmes
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-content">
+                    <a href="Nutritional.html" target="_blank">
+                        <img src="https://img.freepik.com/premium-photo/world-food-day-background-concept-space-area-text_1201937-6205.jpg?w=1060"
+                            alt="National Nutritional Programmes" />
+                        <div class="card-text">
+                            National Nutritional Programmes
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-content">
+                    <a href="communicable.html" target="_blank">
+                        <img src="https://img.freepik.com/free-vector/social-distancing-meeting_23-2148545124.jpg?t=st=1729787566~exp=1729791166~hmac=f82e7037f8fbea56fc654cd90dcd9bb327a22bf0f2abfdb4c937cbe497c7827e&w=996"
+                            alt="Communicable diseases" />
+                        <div class="card-text">
+                            Communicable diseases
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-content">
+                    <a href="non communicable.html" target="_blank">
+                        <img src="https://img.freepik.com/free-vector/mental-health-awareness-concept_23-2148531011.jpg?t=st=1729787741~exp=1729791341~hmac=41dedda6de1f57c4b97bfadd10199d1250771f112483d9bf9422d3ee4dd1a4aa&w=740"
+                            alt="Non-communicable diseases" />
+                        <div class="card-text">
+                            Non-communicable diseases
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        const stack = document.querySelector(".stack");
+        const cards = Array.from(stack.children).filter((child) => child.classList.contains("card"));
+
+        // Move the last card to the top
+        function moveCard() {
+            const lastCard = stack.lastElementChild;
+            if (lastCard) {
+                lastCard.classList.add("swap");
+                setTimeout(() => {
+                    lastCard.classList.remove("swap");
+                    stack.insertBefore(lastCard, stack.firstElementChild);
+                }, 1200); // Duration of the swap animation
+            }
+        }
+
+        // Set autoplay interval (increased to 4000 milliseconds)
+        let autoplayInterval = setInterval(moveCard, 4000);
+
+        // Move card on click
+        stack.addEventListener("click", function (e) {
+            const card = e.target.closest(".card");
+            if (card && card === stack.lastElementChild) {
+                card.classList.add("swap");
+                setTimeout(() => {
+                    card.classList.remove("swap");
+                    stack.insertBefore(card, stack.firstElementChild);
+                }, 1200);
+            }
+        });
+
+
+        // Dropdown functionality
+        const exploreBtn = document.getElementById("exploreBtn");
+        const dropdownMenu = document.getElementById("dropdownMenu");
+
+        exploreBtn.addEventListener("click", function () {
+            dropdownMenu.style.display = dropdownMenu.style.display === "none" || dropdownMenu.style.display === "" ? "block" : "none";
+        });
+
+        // Close the dropdown if clicked outside
+        window.addEventListener("click", function (event) {
+            if (!exploreBtn.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.style.display = "none";
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>

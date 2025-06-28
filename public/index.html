@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+    <title>Symptom Form</title>
+    <style>
+        /* Basic styling for body */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e6f2ff;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .icon {
+            margin-right: 20px;
+        }
+
+        .logo {
+            color: #ff7200;
+            font-size: 60px;
+            font-family: Arial, sans-serif;
+            line-height: 1;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2em;
+            color: #333;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type='text'],
+        input[type='email'],
+        input[type='number'],
+        textarea,
+        select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-top: 5px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        input[type='submit'] {
+            margin-top: 20px;
+            padding: 12px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type='submit']:hover {
+            background-color: #3ab90f;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        textarea#detailed-symptoms {
+            margin-top: 20px;
+        }
+
+        .checkbox-group div {
+            width: 100%;
+        }
+
+        .gender-group {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            margin-top: 10px;
+        }
+
+        .gender-group label {
+            display: inline-block;
+            margin-right: 20px;
+            font-weight: normal;
+            cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+
+            input[type='text'],
+            input[type='email'],
+            input[type='number'],
+            textarea,
+            select {
+                width: 100%;
+            }
+        }
+
+        .phone-group {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .phone-group input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        .phone-group input#country-code {
+            flex: 0 0 80px;
+            margin-right: 10px;
+            text-align: center;
+        }
+
+        .phone-group input#phone {
+            flex: 1 1 auto;
+            max-width: 250px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-container">
+        <div class="icon">
+            <h2 class="logo">
+                <i class="fa-solid fa-hospital"></i>
+            </h2>
+        </div>
+        <h1>Community Health Care Website</h1>
+    </div>
+
+    <form id="symptomForm" action="http://localhost:3000/api/symptoms" method="post" autocomplete="off">
+        <fieldset>
+            <legend>
+                <h2>Patient Personal Information</h2>
+            </legend>
+            <label for="name">Enter your Full Name</label>
+            <input type="text" id="name" name="name" placeholder="First_Name Middle_Name Surname" required
+                autocomplete="name" />
+
+            <label for="email">Enter your email</label>
+            <input type="email" id="email" name="email" placeholder="xyz@gmail.com" required autocomplete="email" />
+
+            <label for="phone">Enter your phone number</label>
+            <div class="phone-group">
+                <input type="text" id="country-code" name="countryCode" placeholder="+91" value="+91"
+                    pattern="\+\d{1,4}" title="Country code (e.g., +91)" required />
+                <input type="text" id="phone" name="phone" placeholder="1234567890" pattern="[0-9]{10}"
+                    title="10 digit phone number" required autocomplete="tel" />
+            </div>
+
+            <label>Enter your gender</label>
+            <div class="gender-group">
+                <input type="radio" id="male" name="gender" value="male" required />
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="female" />
+                <label for="female">Female</label>
+                <input type="radio" id="others" name="gender" value="others" />
+                <label for="others">Others</label>
+            </div>
+
+            <label for="address">Enter your address</label>
+            <textarea id="address" name="address" rows="4" required></textarea>
+
+            <label for="pincode">Enter your Pincode (6 digit code)</label>
+            <input type="text" id="pincode" name="pincode" pattern="[0-9]{6}" required title="6 digit postal code" />
+        </fieldset>
+
+        <fieldset>
+            <legend>
+                <h2>Symptoms Information</h2>
+            </legend>
+            <label>Check the symptoms you are experiencing</label>
+            <div class="checkbox-group">
+                <!-- Checkboxes for symptoms -->
+                <div>
+                    <label>
+                        <input type="checkbox" name="commonSymptoms" value="fever" />
+                        Fever
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="commonSymptoms" value="cough" />
+                        Cough
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="commonSymptoms" value="fatigue" />
+                        Fatigue
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="commonSymptoms" value="headache" />
+                        Headache
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="commonSymptoms" value="sore-throat" />
+                        Sore Throat
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="commonSymptoms" value="shortness-of-breath" />
+                        Shortness of Breath
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="commonSymptoms" value="muscle-pain" />
+                        Muscle Pain
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="commonSymptoms" value="loss-of-taste-smell" />
+                        Loss of Taste or Smell
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="commonSymptoms" value="chest-pain" />
+                        Chest Pain
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="commonSymptoms" value="nausea" />
+                        Nausea
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="commonSymptoms" value="diarrhea" />
+                        Diarrhea
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="commonSymptoms" value="dizziness" />
+                        Dizziness
+                    </label>
+                </div>
+            </div>
+
+            <label for="detailed-symptoms">Write your symptoms in detail here</label>
+            <textarea id="detailed-symptoms" name="detailedSymptoms" rows="6"
+                placeholder="Write your symptoms in detail here..."></textarea>
+        </fieldset>
+
+        <input type="submit" value="Submit" />
+    </form>
+
+    <script>
+        const form = document.getElementById('symptomForm');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // Check required fields manually if needed (optional since HTML validation should catch most)
+            const gender = form.gender.value;
+            if (!gender) {
+                alert('Please select your gender.');
+                return;
+            }
+
+            // You can add more validation here if needed
+
+            // Collect form data
+            const formData = new FormData(form);
+
+            // Convert checkboxes (commonSymptoms) to array
+            const checkedSymptoms = [];
+            form.querySelectorAll('input[name="commonSymptoms"]:checked').forEach(checkbox => {
+                checkedSymptoms.push(checkbox.value);
+            });
+
+            // Prepare data object for submission
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                countryCode: formData.get('countryCode'),
+                phone: formData.get('phone'),
+                gender: gender,
+                address: formData.get('address'),
+                pincode: formData.get('pincode'),
+                commonSymptoms: checkedSymptoms,
+                detailedSymptoms: formData.get('detailedSymptoms')
+            };
+
+            console.log('Data to submit:', data);
+
+            // POST data to your backend (adjust URL as needed)
+            fetch(form.action, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        alert('Form submitted successfully!');
+                        form.reset();
+                    } else {
+                        alert('Failed to submit form. Please try again.');
+                    }
+                })
+                .catch(() => {
+                    alert('Error submitting form. Please check your network connection.');
+                });
+        });
+    </script>
+</body>
+
+</html>

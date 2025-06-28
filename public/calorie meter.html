@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calorie Calculator</title>
+  <style>
+    body {
+      background-color: #0b2035;
+      color: #fff;
+      font-family: "Montserrat", sans-serif;
+      font-size: 16px;
+    }
+
+    section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 75px 0;
+    }
+
+    h1 {
+      font-size: 30px;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 15px;
+      text-transform: uppercase;
+    }
+
+    a {
+      color: #fc7904;
+      text-decoration: none;
+    }
+
+    .form {
+      width: 100%;
+      max-width: 380px;
+      padding: 35px;
+      box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+        0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+        0 12.5px 10px rgba(0, 0, 0, 0.06),
+        0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+        0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+        0 100px 80px rgba(0, 0, 0, 0.12);
+      border: none;
+    }
+
+    .form .btns label {
+      display: none;
+    }
+
+    .form .btns .btns-flex {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .form .input-section h3 {
+      display: flex;
+      align-items: center;
+    }
+
+    .form .input-section .info-box {
+      box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+        0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+        0 12.5px 10px rgba(0, 0, 0, 0.06),
+        0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+        0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+        0 100px 80px rgba(0, 0, 0, 0.12);
+      background-color: #fff;
+      color: #000;
+      padding: 5px 10px;
+      position: absolute;
+      bottom: 105%;
+      left: 0;
+      z-index: 100;
+      width: 95%;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .form .input-section .info-icon {
+      font-size: 26px;
+      margin-left: 10px;
+      cursor: help;
+    }
+
+    .form .input-section:not(:first-child) {
+      margin-top: 25px;
+    }
+
+    .form .inputs {
+      display: flex;
+      align-items: center;
+    }
+
+    .form .inputs input {
+      padding: 10px 20px;
+      border-radius: 2px;
+      border: none;
+      font-family: "Montserrat", sans-serif;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+
+    .form .inputs label {
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .form .inputs .input-after-info {
+      margin-left: 10px;
+    }
+
+    .form .inp-norm input {
+      width: 41%;
+    }
+
+    .form .inp-norm label {
+      width: 30%;
+    }
+
+    .form .inp-norm .input-after-info {
+      width: 10%;
+    }
+
+    .form .inp-2-fields input {
+      width: 10%;
+    }
+
+    .form .inp-2-fields label {
+      width: 30%;
+    }
+
+    .form .inp-2-fields .input-after-info {
+      width: 8%;
+    }
+
+    .form .radio-btns p {
+      margin: 2px 0;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+    }
+
+    .form .radio-flex {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .form .radio-flex .radio-btn {
+      width: 48%;
+    }
+
+    .form .radio-flex .radio-btn label {
+      cursor: pointer;
+      padding: 5px 2px;
+    }
+
+    input[type="radio"] {
+      visibility: hidden;
+      display: none;
+    }
+
+    input[type="radio"]+label:before {
+      height: 20px;
+      width: 20px;
+      margin-right: 5px;
+      margin-bottom: -3px;
+      margin-top: 5px;
+      content: "";
+      color: #7dca5c;
+      display: inline-block;
+      vertical-align: baseline;
+      border: 1px solid #777;
+      background: #fff;
+      font-size: 25px;
+      cursor: pointer;
+      border-radius: 2px;
+    }
+
+    input[type="radio"]:checked+label:before {
+      background: #fc7904;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border-radius: 2px;
+      border: none;
+      font-family: "Montserrat", sans-serif;
+      cursor: pointer;
+      text-transform: uppercase;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+      background-color: #fc7904;
+    }
+
+    .btn-input {
+      width: 45%;
+      margin-top: 10px;
+    }
+
+    .btn-active {
+      opacity: 1;
+      cursor: default;
+    }
+
+    .btn-not-active {
+      opacity: 0.5;
+    }
+
+    .btn-submit {
+      width: 100%;
+      margin-top: 25px;
+    }
+
+    .result-box {
+      height: 100px;
+      width: 100%;
+      max-width: 380px;
+      margin-top: 20px;
+    }
+
+    .result-box #resultNumber {
+      color: #fc7904;
+    }
+
+    .result-box h2 {
+      margin-bottom: 10px;
+    }
+
+    .author {
+      position: absolute;
+      left: 35px;
+      top: 35px;
+    }
+
+    .back-link {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      text-decoration: none;
+      font-size: 18px;
+      padding: 10px 20px;
+      background-color: #fc7904;
+      color: white;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .back-link:hover {
+      background-color: #fff;
+      color: #fc7904;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <body>
+    <div class="cc-overlay"></div>
+
+    <section>
+      <h1>Calorie Calculator</h1>
+      <div class="form">
+        <div class="input-section btns">
+          <h3>Gender</h3>
+          <div class="btns-flex">
+            <label>Male</label>
+            <input type="button" class="btn-input btn-active" id="male-btn" value="Male">
+            <label>Female</label>
+            <input type="button" class="btn-input btn-not-active" id="female-btn" value="Female">
+          </div>
+        </div>
+
+
+        <div class="input-section btns">
+          <h3>Preferred Measurement</h3>
+          <div class="btns-flex">
+            <label>Metric</label>
+            <input type="button" class="btn-input btn-active" id="metric-btn" value="Metric">
+            <label>Imperial</label>
+            <input type="button" class="btn-input btn-not-active" id="imperial-btn" value="Imperial">
+          </div>
+        </div>
+
+        <div class="input-section inputs inp-norm">
+          <label>Age:</label>
+          <input type="number" min="0" max="120" id="ageInput">
+          <span class="input-after-info cc-years">years</span>
+        </div>
+
+        <div class="input-section inputs inp-norm">
+          <label>Weight:</label>
+          <input type="number" id="weigthInput">
+          <span class="input-after-info cc-kg">kg</span>
+        </div>
+
+        <div class="input-section inputs inp-2-fields">
+          <label>Height:</label>
+          <input type="number" class="m-input">
+          <span class="input-after-info m-span">m</span>
+          <input type="number" class="cm-input" max="99">
+          <span class="input-after-info cm-span">cm</span>
+        </div>
+
+        <div class="input-section radio-btns">
+          <h3>SELECT YOUR ACTIVITY LEVEL <span class="info-icon">ⓘ</span></h3>
+          <div class="info-box">
+            <p><strong>Sedentary:</strong><br />Little or no exercise</p>
+            <p><strong>Lightly active:</strong><br />Light exercise/sports 1-3 days/week</p>
+            <p><strong>Moderately active:</strong><br />Moderate exercise/sports 3-5 days/wee</p>
+            <p><strong>Very active:</strong><br />Hard exercise/sports 6-7 days a week</p>
+            <p><b>Extra active:</b><br />Hard exercise/sports & physical job or 2x training</p>
+          </div>
+          <div class="radio-flex">
+            <div class="radio-btn">
+              <input type="radio" id="sedentary" name="activity-level" value="sedentary" checked>
+              <label for="sedentary">sedentary</label>
+            </div>
+            <div class="radio-btn">
+              <input type="radio" id="lightly-active" name="activity-level" value="lightly-active">
+              <label for="lightly-active">lightly active</label>
+            </div>
+            <div class="radio-btn">
+              <input type="radio" id="moderately-active" name="activity-level" value="moderately-active">
+              <label for="moderately-active">moderately active</label>
+            </div>
+            <div class="radio-btn">
+              <input type="radio" id="very-active" name="activity-level" value="very-active">
+              <label for="very-active">very active</label>
+            </div>
+            <div class="radio-btn">
+              <input type="radio" id="extra-active" name="activity-level" value="extra-active">
+              <label for="extra-active">extra active</label>
+            </div>
+          </div>
+        </div>
+
+        <input class="btn-submit" type="submit" value="Check Result">
+      </div>
+      <div class="result-box">
+        <div id="cc-result-box" style="display:none;">
+          <h2>You Need</h2>
+          <h3 id="h3-cc-result"><span id="resultNumber">2500</span> Calories Per Day<span id="cc-result"></span>
+          </h3>
+          <p id="cc-message"></p>
+        </div>
+      </div>
+
+      <a href="home.html" class="back-link">← Back to Home</a>
+    </section>
+
+    <div class="author">Codepen by Divya & Maithilee</div>
+    <script>
+      "use strict";
+
+      const maleButton = document.querySelector("#male-btn");
+      const femaleButton = document.querySelector("#female-btn");
+      const metricButton = document.querySelector("#metric-btn");
+      const imperialButton = document.querySelector("#imperial-btn");
+
+      // if male button is clicked
+      maleButton.addEventListener("click", function () {
+        maleButton.classList.add("btn-active");
+        maleButton.classList.remove("btn-not-active");
+
+        femaleButton.classList.add("btn-not-active");
+        femaleButton.classList.remove("btn-active");
+      });
+
+      // when female button is clicked
+      femaleButton.addEventListener("click", function () {
+        femaleButton.classList.add("btn-active");
+        femaleButton.classList.remove("btn-not-active");
+
+        maleButton.classList.add("btn-not-active");
+        maleButton.classList.remove("btn-active");
+      });
+
+      const kgLabelAfter = document.querySelector(".cc-kg");
+      const cmSpan = document.querySelector(".cm-span");
+      const mSpan = document.querySelector(".m-span");
+      const mInput = document.querySelector(".m-input");
+      let cmInput = document.querySelector(".cm-input");
+      const ageInput = document.querySelector("#ageInput");
+      let weightInput = document.querySelector("#weightInput");
+
+      // when metric button is clicked
+      metricButton.addEventListener("click", function () {
+        metricButton.classList.add("btn-active");
+        metricButton.classList.remove("btn-not-active");
+        imperialButton.classList.add("btn-not-active");
+        imperialButton.classList.remove("btn-active");
+        kgLabelAfter.textContent = "kg";
+        mSpan.textContent = "m";
+        cmInput.style.display = "block";
+        cmSpan.style.display = "block";
+        mInput.style.width = "10%";
+      });
+
+      // when imperial button is clicked
+      imperialButton.addEventListener("click", function () {
+        imperialButton.classList.add("btn-active");
+        imperialButton.classList.remove("btn-not-active");
+        metricButton.classList.add("btn-not-active");
+        metricButton.classList.remove("btn-active");
+        kgLabelAfter.textContent = "lbs";
+        mSpan.textContent = "inches";
+        cmInput.style.display = "none";
+        cmSpan.style.display = "none";
+        mInput.style.width = "41%";
+      });
+
+      // Mifflin-St Jeor calculation for male
+      const adultMaleCalc = function (weight, height, age) {
+        return 10 * weight + 6.25 * height - 5 * age + 5;
+      };
+
+      // Mifflin-St Jeor calculation for female
+      const adultFemaleCalc = function (weight, height, age) {
+        return 10 * weight + 6.25 * height - 5 * age - 161;
+      };
+
+      // Calorie intake final calculation
+      const calcDailyCalorie = function (bmr, activity) {
+        return bmr * activity;
+      };
+
+      // Calculation for different activity levels
+      const sedentaryCalc = 1.2;
+      const lActiveCalc = 1.375;
+      const mActiveCalc = 1.55;
+      const vActiveCalc = 1.725;
+      const eActiveCalc = 1.9;
+
+      const btnSubmit = document.querySelector(".btn-submit");
+      const resultBox = document.querySelector("#cc-result-box");
+      const ccMessage = document.querySelector("#cc-message");
+
+      // On click of a button
+      btnSubmit.addEventListener("click", function () {
+        let warning = "";
+        if (cmInput.value.length < 2) {
+          cmInput.value = "0" + cmInput.value;
+        } else if (cmInput.value > 99) {
+          warning = "⚠ There is an error";
+        }
+        let fullHeight = mInput.value + cmInput.value;
+
+        resultBox.style.display = "block";
+
+        // Check if we need to convert metric to imperial
+        let weightResult;
+        let heightResult;
+
+        // If meters are selected
+        if (!imperialButton.classList.contains("btn-active")) {
+          weightResult = weightInput.value; // weight in kg
+          heightResult = Number(fullHeight); // height in cm
+        } else {
+          weightResult = weightInput.value * 0.453592; // convert lbs to kg
+          heightResult = mInput.value * 2.54; // convert inches to cm
+        }
+
+        let bmrResult;
+        if (maleButton.classList.contains("btn-active")) {
+          bmrResult = adultMaleCalc(weightResult, heightResult, ageInput.value);
+        } else {
+          bmrResult = adultFemaleCalc(weightResult, heightResult, ageInput.value);
+        }
+
+        const radioButtons = document.querySelector(
+          'input[name="activity-level"]:checked'
+        ).value;
+
+        let calorieResult;
+        /*---- activity levels -----*/
+        if (radioButtons === "sedentary") {
+          calorieResult = calcDailyCalorie(bmrResult, sedentaryCalc);
+        } else if (radioButtons === "lightly-active") {
+          calorieResult = calcDailyCalorie(bmrResult, lActiveCalc);
+        } else if (radioButtons === "moderately-active") {
+          calorieResult = calcDailyCalorie(bmrResult, mActiveCalc);
+        } else if (radioButtons === "very-active") {
+          calorieResult = calcDailyCalorie(bmrResult, vActiveCalc);
+        } else if (radioButtons === "extra-active") {
+          calorieResult = calcDailyCalorie(bmrResult, eActiveCalc);
+        }
+
+        document
+          .querySelector("#cc-result-box")
+          .scrollIntoView();
+
+        document.querySelector("#resultNumber").textContent =
+          Math.trunc(calorieResult);
+      });
+
+      // On mouse over show and hide info box for activity levels
+      document.querySelector(".info-icon").addEventListener("mouseover", function () {
+        document.querySelector(".info-box").style.opacity = "1";
+        document.querySelector(".info-box").style.display = "block";
+      });
+
+      document.querySelector(".info-icon").addEventListener("mouseout", function () {
+        document.querySelector(".info-box").style.opacity = "0";
+        document.querySelector(".info-box").style.display = "none";
+      });
+
+
+    </script>
+  </body>
+
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Diet</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        body {
+            margin: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .bal {
+            background-color: antiquewhite;
+            background-size: cover;
+            font-size: 35px;
+            margin-top: 50px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .bal img {
+            height: 150px;
+            width: 150px;
+        }
+
+        h1,
+        h2 {
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 20px;
+            margin: 10px;
+            line-height: 1.6;
+        }
+
+        #himg {
+            float: right;
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        #carbs,
+        #pro,
+        #fat,
+        #minaral {
+            font-size: 40px;
+            margin-top: 40px;
+        }
+
+        #carb,
+        #protien,
+        #fats,
+        #minarals {
+            width: 250px;
+            margin: 10px;
+            float: right;
+            margin-left: 20px;
+        }
+
+        #infocarb,
+        #infopro,
+        #infofat,
+        #infomin {
+            font-size: 20px;
+            width: 60%;
+            margin-top: 20px;
+            margin-right: 20px;
+        }
+
+        #dailycarb,
+        #dailypro,
+        #dailyfat,
+        #dailymin {
+            font-size: 25px;
+            margin-top: 15px;
+        }
+
+        .more-info-link {
+            display: block;
+            font-size: 30px;
+            color: #b8f081;
+            background-color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 30px;
+            transition: color 0.3s ease;
+            margin-bottom: 40px;
+
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .more-info-link:hover {
+            color: #4c57af;
+            text-decoration: underline;
+        }
+
+        .back-link {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 18px;
+            text-decoration: none;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-link:hover {
+            background-color: #f03144;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bal">
+        <h1>HEALTHY AND BALANCED DIET</h1>
+        <img src="https://www.nutrition.org.uk/media/abkh113c/healthy-balanced-diet-2.jpg?width=800&height=600&rnd=133431562412400000&format=webp"
+            alt="food img">
+    </div>
+    <div>
+        <img id="himg" src="https://th.bing.com/th/id/OIP.9CIikU1oVZn8t-k2REjKYQHaHa?rs=1&pid=ImgDetMain" alt="food img"
+            height="175px" width="175px">
+    </div>
+    <h2 id="carbs">NEED OF HEALTHY AND BALANCED DIET</h2>
+    <p>A healthy and balanced diet is crucial for providing the body with essential nutrients like vitamins,
+        minerals, and macronutrients needed for energy, growth, and repair. It helps prevent chronic diseases,
+        supports mental and physical well-being, and maintains a healthy weight. Additionally, it boosts immunity,
+        promotes healthy aging, and supports proper development in children and adolescents, ensuring overall vitality
+        and longevity.</p>
+    <div>
+        <h2 id="carbs">CARBOHYDRATES</h2>
+        <img id="carb" src="https://www.kaizo-health.com/wp-content/uploads/2020/09/Carbohydrate-Blog-scaled.jpeg">
+        <p id="infocarb"> Carbohydrates are the primary energy source for the body. They fuel brain function, physical
+            activity,
+            and support the metabolism of proteins and fats. Simple carbs provide quick energy, while complex carbs
+            offer sustained
+            energy release, helping to maintain stable blood sugar levels.</p>
+        <p id="dailycarb">Need: 225-325 grams (45-65% of daily calories)</p>
+    </div>
+    <div>
+        <h2 id="pro">PROTEINS</h2>
+        <img id="protien" src="https://www.thrivenaija.com/wp-content/uploads/2020/01/healthy-food-high-in-protein.jpg">
+        <p id="infopro"> Proteins are essential for building and repairing tissues, including muscles, skin, and organs.
+            They play a crucial role in producing enzymes and hormones, supporting immune function, and maintaining
+            muscle mass,
+            especially during physical activity or recovery from injury.</p>
+        <p id="dailypro">Need: 50-175 grams (10-35% of daily calories)</p>
+    </div>
+    <div>
+        <h2 id="fat">FATS</h2>
+        <img id="fats"
+            src="https://static.wixstatic.com/media/95ac29_940103b214f1457b8561a964c36c176b~mv2.jpeg/v1/fill/w_960,h_438,al_c,lg_1,q_85/95ac29_940103b214f1457b8561a964c36c176b~mv2.jpeg">
+        <p id="infofat"> Fats are vital for long-term energy storage, insulation, and protecting vital organs.
+            They are key components of cell membranes and are necessary for absorbing fat-soluble vitamins (A, D, E, and
+            K).
+            Healthy fats, like omega-3s, also reduce inflammation and support brain health.</p>
+        <p id="dailyfat">Need: 44-77 grams (20-35% of daily calories)</p>
+    </div>
+    <div>
+        <h2 id="minaral">Minerals</h2>
+        <img id="minarals" src="https://th.bing.com/th/id/OIP.N3RiVCJZ0l8wHUdYueJsYgAAAA?rs=1&pid=ImgDetMain">
+        <p id="infomin"> Minerals are essential for numerous bodily functions: they support bone health (calcium),
+            enable oxygen transport in the blood (iron), and help maintain fluid balance (potassium). They are also
+            involved in nerve function,
+            muscle contraction, and enzyme activity (zinc). Adequate mineral intake is crucial for overall health,
+            preventing deficiencies that can lead to various health issues.</p>
+        <p id="dailymin">Need: Varies by mineral, e.g., Calcium: 1,000-1,300 mg, Iron: 8-18 mg</p>
+    </div>
+    <a class="more-info-link" href="diet2.html">Click here to know more about the Family-Friendly Indian Diet
+        Plan</a>
+    <a class="back-link" href="home.html">← Back to Home</a>
+</body>
+
+</html>
