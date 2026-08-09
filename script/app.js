@@ -181,6 +181,8 @@ app.get('/api/symptoms/:pincode', async (req, res) => {
 });
 
 // Start server
-app.listen(port, () => {
-	console.log(`Server is running on http://localhost:${port}`);
+
+app.listen(port, '0.0.0.0', () => {
+    console.log(`Server running on port ${port}`);
 });
+
