@@ -70,7 +70,6 @@
       box-sizing: border-box;
     }
 
-    #height_m,
     #height_cm,
     #weight_pd {
       display: none;
@@ -134,13 +133,11 @@
   <div class="cont">
     <form id="input" class="form1" onsubmit="return false;">
       Height:
-      <input type="number" id="height_m" name="meter" placeholder="Enter height in meter">
       <input type="number" id="height_cm" name="centimeter" placeholder="Enter height in cm">
       <input type="number" id="height_ft" name="feet" placeholder="feet">
       <input type="number" id="height_in" name="inches" placeholder="inches">
       <select name="height" id="height">
         <option value="feet">feet</option>
-        <option value="meter">meter</option>
         <option value="cm">centimeter</option>
       </select><br><br>
       Weight:
@@ -183,20 +180,16 @@
     });
 
     const heightSelect = document.getElementById('height');
-    const height_m = document.getElementById('height_m');
     const height_cm = document.getElementById('height_cm');
     const height_ft = document.getElementById('height_ft');
     const height_in = document.getElementById('height_in');
 
     heightSelect.addEventListener('change', () => {
-      height_m.style.display = 'none';
       height_cm.style.display = 'none';
       height_ft.style.display = 'none';
       height_in.style.display = 'none';
 
-      if (heightSelect.value === 'meter') {
-        height_m.style.display = 'block';
-      } else if (heightSelect.value === 'cm') {
+      if (heightSelect.value === 'cm') {
         height_cm.style.display = 'block';
       } else if (heightSelect.value === 'feet') {
         height_ft.style.display = 'block';
@@ -211,12 +204,12 @@
       let heightInMeters = 0;
       let weightInKg = 0;
 
-      if (heightSelect.value === 'meter') {
-        heightInMeters = parseFloat(height_m.value);
-      } else if (heightSelect.value === 'cm') {
+      if (heightSelect.value === 'cm') {
         heightInMeters = parseFloat(height_cm.value) * 0.01;
       } else if (heightSelect.value === 'feet') {
-        heightInMeters = (parseFloat(height_ft.value) * 0.3048) + (parseFloat(height_in.value) * 0.0254);
+        const feet = parseFloat(height_ft.value) || 0;
+        const inches = parseFloat(height_in.value) || 0;
+        heightInMeters = (feet * 0.3048) + (inches * 0.0254);
       }
 
       if (weightSelect.value === 'kg') {
