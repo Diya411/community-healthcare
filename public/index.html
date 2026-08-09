@@ -299,6 +299,14 @@
                 placeholder="Write your symptoms in detail here..."></textarea>
         </fieldset>
 
+        <label for="severity">Symptom Severity:</label>
+        <select id="severity" name="severity" required>
+          <option value="">Select severity</option>
+          <option value="mild">Mild</option>
+          <option value="moderate">Moderate</option>
+          <option value="severe">Severe</option>
+        </select>
+
         <input type="submit" value="Submit" />
     </form>
 
@@ -336,7 +344,8 @@
                 address: formData.get('address'),
                 pincode: formData.get('pincode'),
                 commonSymptoms: checkedSymptoms,
-                detailedSymptoms: formData.get('detailedSymptoms')
+                detailedSymptoms: formData.get('detailedSymptoms'),
+                severity: formData.get('severity')
             };
 
             console.log('Data to submit:', data);
