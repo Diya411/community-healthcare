@@ -1,18 +1,14 @@
 {
-  "name": "symptoms",
+  "name": "symptom-tracker",
   "version": "1.0.0",
-  "main": "index.js",
-"scripts": {
-  "start": "node script/app.js"
-},
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "description": "Symptom and location tracking application",
+  "main": "script/app.js",
+  "scripts": {
+    "start": "node script/app.js"
+  },
   "dependencies": {
-    "dotenv": "^17.0.0",
+    "dotenv": "^16.4.5",
     "express": "^4.21.0",
-    "mongodb": "^6.9.0",
     "mongoose": "^8.7.0"
   }
 }
