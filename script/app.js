@@ -22,10 +22,7 @@ if (!OPEN_CAGE_API_KEY || !MONGODB_URI) {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static files (HTML, CSS, JS)
-app.use(express.static(path.join(__dirname, '../public')));
-
-// HTML Page Routes
+// HTML Page Routes (Defined BEFORE static files)
 app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, '../public', 'Icon.html'));
 });
@@ -42,6 +39,9 @@ app.get('/map', (req, res) => {
 	res.sendFile(path.join(__dirname, '../public', 'map.html'));
 });
 
+// Serve static assets without auto-serving index.html at root
+app.use(express.static(path.join(__dirname, '../public'), { index: false }));
+
 // MongoDB Connection
 mongoose
 	.connect(MONGODB_URI)
@@ -51,7 +51,7 @@ mongoose
 		process.exit(1);
 	});
 
-// Mongoose Schema & Model (Includes latitude and longitude)
+// Mongoose Schema & Model
 const symptomSchema = new mongoose.Schema({
 	name: String,
 	email: String,
@@ -104,7 +104,6 @@ app.post('/api/symptoms', async (req, res) => {
 	try {
 		const symptomData = req.body;
 
-		// Fetch coordinates once upon submission
 		if (symptomData.pincode) {
 			const coords = await geocodePincode(symptomData.pincode);
 			if (coords) {
@@ -122,7 +121,7 @@ app.post('/api/symptoms', async (req, res) => {
 	}
 });
 
-// GET endpoint: Returns grouped location and symptom data in a single request
+// GET endpoint: Returns grouped location and symptom data
 app.get('/api/locations', async (req, res) => {
 	try {
 		const locations = await Symptom.find(
@@ -130,7 +129,6 @@ app.get('/api/locations', async (req, res) => {
 			'pincode latitude longitude commonSymptoms detailedSymptoms severity'
 		);
 
-		// Group records by pincode for clean map rendering
 		const groupedLocations = locations.reduce((acc, curr) => {
 			if (!acc[curr.pincode]) {
 				acc[curr.pincode] = {
@@ -155,7 +153,7 @@ app.get('/api/locations', async (req, res) => {
 	}
 });
 
-// GET symptoms by pincode (Optional lookup endpoint)
+// GET symptoms by pincode
 app.get('/api/symptoms/:pincode', async (req, res) => {
 	try {
 		const { pincode } = req.params;
@@ -181,8 +179,6 @@ app.get('/api/symptoms/:pincode', async (req, res) => {
 });
 
 // Start server
-
 app.listen(port, '0.0.0.0', () => {
-    console.log(`Server running on port ${port}`);
+	console.log(`Server running on port ${port}`);
 });
-
