@@ -7,12 +7,21 @@
     <title>Map with Symptoms</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
         #map {
-            height: 700px;
+            height: 100vh;
+            width: 100%;
         }
 
         .popup {
             max-width: 300px;
+            max-height: 250px;
+            overflow-y: auto;
         }
     </style>
 </head>
@@ -23,58 +32,70 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const map = L.map('map').setView([20.5937, 78.9629], 5);
+            // Prevent zooming out so far that the map duplicates horizontally
+            const bounds = L.latLngBounds(L.latLng(-90, -180), L.latLng(90, 180));
 
+            const map = L.map('map', {
+                minZoom: 3,
+                maxBounds: bounds,
+                maxBoundsViscosity: 1.0
+            }).setView([20.5937, 78.9629], 5);
+
+            // Add tile layer with noWrap to stop multi-world rendering
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                noWrap: true,
+                bounds: bounds,
                 attribution:
                     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
             }).addTo(map);
 
+            // Fetch grouped location data directly from backend
             fetch('/api/locations')
                 .then((response) => {
                     if (!response.ok) throw new Error('Failed to fetch locations');
                     return response.json();
                 })
                 .then((locations) => {
+                    if (!locations || locations.length === 0) {
+                        console.warn('No locations with valid coordinates found in DB.');
+                        return;
+                    }
+
                     locations.forEach((location) => {
-                        const { pincode, latitude, longitude } = location;
+                        const { pincode, latitude, longitude, entries } = location;
 
-                        if (!latitude || !longitude) return; // skip invalid coords
+                        if (!latitude || !longitude) return; // Skip invalid coordinates
 
-                        fetch(`/api/symptoms/${encodeURIComponent(pincode)}`)
-                            .then((response) => {
-                                if (!response.ok) throw new Error(`No symptoms for pincode ${pincode}`);
-                                return response.json();
+                        // Build popup content directly from entries array returned by /api/locations
+                        const entriesList = Array.isArray(entries) && entries.length > 0 ? entries : [];
+
+                        const popupContent = entriesList
+                            .map((entry, i) => {
+                                const commonSymptoms = Array.isArray(entry.commonSymptoms) && entry.commonSymptoms.length
+                                    ? entry.commonSymptoms.join(', ')
+                                    : 'None selected';
+
+                                const detailedSymptoms = entry.detailedSymptoms || 'No detailed description';
+                                const severity = entry.severity || 'Not specified';
+
+                                return `
+                                    <div style="margin-bottom: 12px; border-bottom: 1px solid #ccc; padding-bottom: 8px;">
+                                        <b>Entry ${i + 1}</b><br />
+                                        <b>Common Symptoms:</b> ${commonSymptoms}<br />
+                                        <b>Details:</b> ${detailedSymptoms}<br />
+                                        <b>Severity:</b> ${severity}
+                                    </div>
+                                `;
                             })
-                            .then((symptomData) => {
-                                const entries = Array.isArray(symptomData) ? symptomData : [symptomData];
+                            .join('');
 
-                                const popupContent = entries
-                                    .map((entry, i) => {
-                                        const commonSymptoms = Array.isArray(entry.commonSymptoms) && entry.commonSymptoms.length
-                                            ? entry.commonSymptoms.join('<br>')
-                                            : 'No common symptoms available';
-
-                                        const detailedSymptoms = entry.detailedSymptoms || 'No detailed symptoms available';
-                                        const severity = entry.severity || 'Not specified';
-
-                                        return `
-                      <div style="margin-bottom: 15px;">
-                        <b>Entry ${i + 1}</b><br />
-                        <b>Common Symptoms:</b><br />${commonSymptoms}<br />
-                        <b>Detailed Symptoms:</b><br />${detailedSymptoms}<br />
-                        <b>Severity:</b> ${severity}
-                      </div>
-                    `;
-                                    })
-                                    .join('');
-
-                                const marker = L.marker([latitude, longitude]).addTo(map);
-                                marker.bindPopup(`<b>Pincode:</b> ${pincode}<br><br>${popupContent}`);
-                            })
-                            .catch((err) => {
-                                console.error(`Error fetching symptoms for pincode ${pincode}:`, err);
-                            });
+                        const marker = L.marker([latitude, longitude]).addTo(map);
+                        marker.bindPopup(`
+                            <div class="popup">
+                                <h3>Pincode: ${pincode}</h3>
+                                ${popupContent || '<i>No symptom entries recorded</i>'}
+                            </div>
+                        `);
                     });
                 })
                 .catch((err) => {
